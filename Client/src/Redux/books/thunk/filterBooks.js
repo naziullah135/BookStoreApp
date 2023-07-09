@@ -1,4 +1,4 @@
-import { loaded } from "../books/actions";
+import { loaded } from "../actions";
 
 const filteredBooks = (filterType) => {
   return async (dispatch) => {

@@ -1,4 +1,4 @@
-import { loaded } from "../books/actions";
+import { added, loaded } from "../actions";
 
 const addBook = (data) => {
   return async (dispatch) => {
@@ -8,7 +8,7 @@ const addBook = (data) => {
       headers: { "Content-Type": "application/json; charset= UTF-8" },
     });
 
-    dispatch(loaded);
+    dispatch(added(data));
   };
 };
 

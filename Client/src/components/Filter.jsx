@@ -1,9 +1,10 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import filteredBooks from "../Redux/thunk/filterBooks";
+import { useDispatch, useSelector } from "react-redux";
+import filteredBooks from "../Redux/books/thunk/filterBooks";
 
 const Filter = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const bookInfo  = useSelector((state) => state.books)
 
   const handleFilter = (filterType) => {
     dispatch(filteredBooks(filterType))

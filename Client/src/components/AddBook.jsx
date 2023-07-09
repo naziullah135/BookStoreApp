@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import addBook from "../Redux/books/thunk/addBook";
+import { loaded } from "../Redux/books/actions";
 
 const AddBook = () => {
+  const dispatch = useDispatch();
   const [bookInfo, setBookInfo] = useState({});
 
   const bookInfoHandler = (e) => {
@@ -8,13 +12,25 @@ const AddBook = () => {
     const inputValue = type === "checkbox" ? checked : value;
     setBookInfo((preValue) => ({ ...preValue, [name]: inputValue }));
   };
-  console.log(bookInfo);
+  
+  const resetState = () => {
+    setBookInfo({});
+  }
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(addBook(bookInfo));
+    dispatch(loaded);
+    resetState()
+  }
+
+
 
   return (
     <div>
       <div className="p-4 overflow-hidden bg-white shadow-cardShadow rounded-md">
         <h4 className="mb-8 text-xl font-bold text-center">Add New Book</h4>
-        <form className="book-form">
+        <form onSubmit={submitHandler} className="book-form">
           <div className="space-y-2">
             <label for="name">Book Name</label>
             <input

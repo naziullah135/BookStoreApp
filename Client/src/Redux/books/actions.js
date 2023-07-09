@@ -1,4 +1,4 @@
-import { ADDBOOKS, LOADED } from "./actionTypes";
+import { ADDBOOKS, LOADED ,DELETED} from "./actionTypes";
 
 
 export const loaded = (books) => {
@@ -7,9 +7,16 @@ export const loaded = (books) => {
     payload: books
    }
 }
-export const added = (books) => {
+export const added = (bookInfo) => {
    return {
     type: ADDBOOKS,
-    payload: books
+    payload: bookInfo
    }
 }
+
+// export const bookDelete = (bookId) => {
+//    return {
+//        type: DELETED,
+//        payload: bookId
+//    }
+// }

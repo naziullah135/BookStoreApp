@@ -1,8 +1,16 @@
 import React from "react";
 import Star from "./Star";
+import { useDispatch } from "react-redux";
+import deleteBook from "../Redux/books/thunk/deleteBook";
+import fetchBooks from "../Redux/books/thunk/fetchBooks";
 
 const Books = ({ book }) => {
+  const dispatch = useDispatch();
   const { name, author, thumbnail, price, rating } = book;
+  const bookDeleteHandler = () => {
+    dispatch(deleteBook(book?.id));
+    dispatch(fetchBooks);
+  };
   return (
     <div className="book-card">
       <img
@@ -32,7 +40,7 @@ const Books = ({ book }) => {
                 />
               </svg>
             </button>
-            <button className="lws-delete">
+            <button onClick={bookDeleteHandler} className="lws-delete">
               <svg
                 fill="none"
                 viewBox="0 0 24 24"
